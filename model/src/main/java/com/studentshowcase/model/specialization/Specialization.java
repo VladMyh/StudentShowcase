@@ -1,10 +1,12 @@
 package com.studentshowcase.model.specialization;
 
 import com.studentshowcase.model.user.Teacher;
+import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 
 public class Specialization {
+	@Id
 	private String id;
 	private String title;
 	private Date startDate;

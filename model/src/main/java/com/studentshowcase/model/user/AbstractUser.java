@@ -1,6 +1,9 @@
 package com.studentshowcase.model.user;
 
+import org.springframework.data.annotation.Id;
+
 public abstract class AbstractUser {
+	@Id
 	protected String id;
 	protected String firstName;
 	protected String lastName;
