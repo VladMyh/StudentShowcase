@@ -14,14 +14,22 @@
     <modules>
         <module>model</module>
         <module>repository</module>
+        <module>rest-service</module>
     </modules>
 
     <properties>
+        <model.version>1.0</model.version>
         <log4j.version>1.2.17</log4j.version>
         <spring.data.version>1.9.5.RELEASE</spring.data.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.studentshowcase</groupId>
+            <artifactId>model</artifactId>
+            <version>${model.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
