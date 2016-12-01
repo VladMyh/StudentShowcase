@@ -10,9 +10,9 @@ public class Student extends AbstractUser{
 
 	public Student() {}
 
-	public Student(String id, String firstName, String lastName, String linkedin,
+	public Student(String id, String firstName, String lastName, String email, String linkedin,
 				   String github, Set<Specialization> specializations) {
-		super(id, firstName, lastName, linkedin);
+		super(id, firstName, lastName, email, linkedin);
 		this.github = github;
 		this.specializations = specializations;
 	}
