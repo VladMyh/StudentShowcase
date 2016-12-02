@@ -15,6 +15,7 @@
         <module>model</module>
         <module>repository</module>
         <module>rest-service</module>
+        <module>service</module>
     </modules>
 
     <properties>

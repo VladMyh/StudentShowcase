@@ -5,16 +5,36 @@ import com.studentshowcase.model.specialization.Specialization;
 import java.util.Set;
 
 public class Student extends AbstractUser{
+	private String faculty;
+	private String cathedra;
 	private String github;
 	private Set<Specialization> specializations;
 
 	public Student() {}
 
 	public Student(String id, String firstName, String lastName, String email, String linkedin,
-				   String github, Set<Specialization> specializations) {
+				   String faculty, String cathedra, String github, Set<Specialization> specializations) {
 		super(id, firstName, lastName, email, linkedin);
+		this.faculty = faculty;
+		this.cathedra = cathedra;
 		this.github = github;
 		this.specializations = specializations;
+	}
+
+	public String getFaculty() {
+		return faculty;
+	}
+
+	public void setFaculty(String faculty) {
+		this.faculty = faculty;
+	}
+
+	public String getCathedra() {
+		return cathedra;
+	}
+
+	public void setCathedra(String cathedra) {
+		this.cathedra = cathedra;
 	}
 
 	public String getGithub() {
@@ -41,6 +61,8 @@ public class Student extends AbstractUser{
 
 		Student student = (Student) o;
 
+		if (!faculty.equals(student.faculty)) return false;
+		if (!cathedra.equals(student.cathedra)) return false;
 		if (!github.equals(student.github)) return false;
 		return specializations.equals(student.specializations);
 
@@ -49,6 +71,8 @@ public class Student extends AbstractUser{
 	@Override
 	public int hashCode() {
 		int result = super.hashCode();
+		result = 31 * result + faculty.hashCode();
+		result = 31 * result + cathedra.hashCode();
 		result = 31 * result + github.hashCode();
 		result = 31 * result + specializations.hashCode();
 		return result;
