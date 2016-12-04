@@ -6,9 +6,11 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class StudentServiceImpl implements StudentService {
 
 	private static Logger logger = Logger.getLogger(StudentServiceImpl.class);
@@ -17,7 +19,7 @@ public class StudentServiceImpl implements StudentService {
 	@Autowired
 	public StudentServiceImpl(StudentRepository repository) {
 		logger.info("Initializing StudentServiceImpl");
-		this.repository = repository;
+		repository = repository;
 	}
 
 	public Student getStudentById(String id) {
@@ -30,5 +32,10 @@ public class StudentServiceImpl implements StudentService {
 		Pageable pageable = new PageRequest(page, size);
 
 		return repository.findAll(pageable).getContent();
+	}
+
+	public void saveOrUpdateStudent(Student student) {
+		logger.info("Saving student");
+		repository.save(student);
 	}
 }

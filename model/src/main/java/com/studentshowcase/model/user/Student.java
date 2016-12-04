@@ -1,9 +1,11 @@
 package com.studentshowcase.model.user;
 
 import com.studentshowcase.model.specialization.Specialization;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Set;
 
+@Document(collection = "student")
 public class Student extends AbstractUser{
 	private String faculty;
 	private String cathedra;
