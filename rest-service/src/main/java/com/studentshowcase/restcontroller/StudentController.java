@@ -28,11 +28,6 @@ public class StudentController {
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public void saveOrUpdateStudent(@RequestBody Student student) {
-		studentService.saveOrUpdateStudent(student);
-	}
-
-	@RequestMapping(value = "test", method = RequestMethod.GET)
-	public String test() {
-		return "test";
+		studentService.addOrUpdateStudent(student);
 	}
 }

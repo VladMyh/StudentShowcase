@@ -19,7 +19,7 @@ public class StudentServiceImpl implements StudentService {
 	@Autowired
 	public StudentServiceImpl(StudentRepository repository) {
 		logger.info("Initializing StudentServiceImpl");
-		repository = repository;
+		this.repository = repository;
 	}
 
 	public Student getStudentById(String id) {
@@ -34,8 +34,13 @@ public class StudentServiceImpl implements StudentService {
 		return repository.findAll(pageable).getContent();
 	}
 
-	public void saveOrUpdateStudent(Student student) {
+	public void addOrUpdateStudent(Student student) {
 		logger.info("Saving student");
 		repository.save(student);
+	}
+
+	public long studentCount() {
+		logger.info("Getting student count");
+		return repository.count();
 	}
 }

@@ -9,6 +9,6 @@ import java.util.List;
 public interface StudentService {
 	Student getStudentById(String id);
 	List<Student> getAllStudentsPage(Integer size, Integer page);
-	void saveOrUpdateStudent(Student student);
-
+	void addOrUpdateStudent(Student student);
+	long studentCount();
 }
