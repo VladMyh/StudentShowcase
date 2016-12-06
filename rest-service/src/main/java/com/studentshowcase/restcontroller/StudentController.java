@@ -23,11 +23,13 @@ public class StudentController {
 
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	public Student getStudentById(@PathVariable String id) {
+		LOGGER.info("get student by id " + id);
 		return studentService.getStudentById(id);
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public void saveOrUpdateStudent(@RequestBody Student student) {
+		LOGGER.info("saving student");
 		studentService.addOrUpdateStudent(student);
 	}
 }

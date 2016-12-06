@@ -13,34 +13,34 @@ import java.util.List;
 @Service
 public class StudentServiceImpl implements StudentService {
 
-	private static Logger logger = Logger.getLogger(StudentServiceImpl.class);
+	private static final Logger LOGGER = Logger.getLogger(StudentServiceImpl.class);
 	private StudentRepository repository;
 
 	@Autowired
 	public StudentServiceImpl(StudentRepository repository) {
-		logger.info("Initializing StudentServiceImpl");
+		LOGGER.info("Initializing StudentServiceImpl");
 		this.repository = repository;
 	}
 
 	public Student getStudentById(String id) {
-		logger.info("Getting student with id = " + id);
+		LOGGER.info("Getting student with id = " + id);
 		return repository.findOne(id);
 	}
 
 	public List<Student> getAllStudentsPage(Integer page, Integer size) {
-		logger.info("Getting " + page + " page of all students, with size " + size);
+		LOGGER.info("Getting " + page + " page of all students, with size " + size);
 		Pageable pageable = new PageRequest(page, size);
 
 		return repository.findAll(pageable).getContent();
 	}
 
 	public void addOrUpdateStudent(Student student) {
-		logger.info("Saving student");
+		LOGGER.info("Saving student");
 		repository.save(student);
 	}
 
 	public long studentCount() {
-		logger.info("Getting student count");
+		LOGGER.info("Getting student count");
 		return repository.count();
 	}
 }
