@@ -54,7 +54,7 @@ public class FrontendApplication {
 			http
 
 					.authorizeRequests()
-					.antMatchers("/index.html", "/", "/login", "/message", "/home").permitAll()
+					.antMatchers("/index.html", "/", "/login", "/main").permitAll()
 					.anyRequest().authenticated()
 					.and()
 					.csrf()

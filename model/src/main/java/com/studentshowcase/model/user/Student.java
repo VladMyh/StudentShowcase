@@ -7,20 +7,32 @@ import java.util.Set;
 
 @Document(collection = "student")
 public class Student extends AbstractUser{
+	private boolean activated;
 	private String faculty;
 	private String cathedra;
 	private String github;
+	private String about;
 	private Set<Specialization> specializations;
 
 	public Student() {}
 
-	public Student(String id, String firstName, String lastName, String email, String linkedin,
-				   String faculty, String cathedra, String github, Set<Specialization> specializations) {
+	public Student(String id, String firstName, String lastName, String email, String linkedin, boolean activated,
+				   String faculty, String cathedra, String github, String about, Set<Specialization> specializations) {
 		super(id, firstName, lastName, email, linkedin);
+		this.activated = activated;
 		this.faculty = faculty;
 		this.cathedra = cathedra;
 		this.github = github;
+		this.about = about;
 		this.specializations = specializations;
+	}
+
+	public boolean isActivated() {
+		return activated;
+	}
+
+	public void setActivated(boolean activated) {
+		this.activated = activated;
 	}
 
 	public String getFaculty() {
@@ -47,6 +59,14 @@ public class Student extends AbstractUser{
 		this.github = github;
 	}
 
+	public String getAbout() {
+		return about;
+	}
+
+	public void setAbout(String about) {
+		this.about = about;
+	}
+
 	public Set<Specialization> getSpecializations() {
 		return specializations;
 	}
@@ -63,20 +83,24 @@ public class Student extends AbstractUser{
 
 		Student student = (Student) o;
 
+		if (activated != student.activated) return false;
 		if (!faculty.equals(student.faculty)) return false;
 		if (!cathedra.equals(student.cathedra)) return false;
 		if (!github.equals(student.github)) return false;
-		return specializations.equals(student.specializations);
+		if (about != null ? !about.equals(student.about) : student.about != null) return false;
+		return specializations != null ? specializations.equals(student.specializations) : student.specializations == null;
 
 	}
 
 	@Override
 	public int hashCode() {
 		int result = super.hashCode();
+		result = 31 * result + (activated ? 1 : 0);
 		result = 31 * result + faculty.hashCode();
 		result = 31 * result + cathedra.hashCode();
 		result = 31 * result + github.hashCode();
-		result = 31 * result + specializations.hashCode();
+		result = 31 * result + (about != null ? about.hashCode() : 0);
+		result = 31 * result + (specializations != null ? specializations.hashCode() : 0);
 		return result;
 	}
 }
