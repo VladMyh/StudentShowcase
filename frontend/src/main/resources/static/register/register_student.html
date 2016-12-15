@@ -1,0 +1,12 @@
+<div ng-controller="RegisterStudentController">
+    <h1>Student Registration</h1>
+
+    <form novalidate class="simple-form">
+        <label>Name: <input type="text" ng-model="student.name" /></label><br />
+        <label>E-mail: <input type="email" ng-model="student.email" /></label><br />
+        <label>Password: <input type="password" ng-model="student.password" /></label><br />
+
+        <input type="submit" ng-click="update(student)" value="Save" />
+    </form>
+    <pre>user = {{student | json}}</pre>
+</div>
