@@ -1,12 +1,18 @@
 'use strict';
 
-angular.module('app', [
-  'ngRoute',
-  'app.main',
-  'app.login'
-]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+var app = angular.module('app', ['ngRoute']);
+
+app.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
-  $routeProvider.otherwise({redirectTo: '/main'});
+  $routeProvider
+      .when('/login', {
+        templateUrl: 'login/login.html',
+        controller: 'LoginController'
+        })
+      .when('/main', {
+        templateUrl: 'main/main.html',
+        controller: 'MainController'
+        })
+      .otherwise({redirectTo: '/main'});
 }]);
