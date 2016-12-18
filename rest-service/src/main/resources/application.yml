@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: api
+  data:
+    mongodb.uri: mongodb://127.0.0.1:27017/studentShowcase
+server:
+  port: 9000
+
