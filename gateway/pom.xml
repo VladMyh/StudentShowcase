@@ -13,10 +13,10 @@
 
     <properties>
         <spring.zuul>1.2.3.RELEASE</spring.zuul>
-        <spring.cloud.started.security>1.1.3.RELEASE</spring.cloud.started.security>
         <spring.boot.version>1.4.2.RELEASE</spring.boot.version>
         <spring.session.version>1.2.2.RELEASE</spring.session.version>
         <apache.httpconponents.version>4.5.2</apache.httpconponents.version>
+        <spring.security.version>4.2.0.RELEASE</spring.security.version>
     </properties>
 
     <dependencies>
@@ -26,31 +26,13 @@
             <artifactId>spring-cloud-starter-zuul</artifactId>
             <version>${spring.zuul}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-security</artifactId>
-            <version>${spring.cloud.started.security}</version>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${spring.boot.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-            <version>${spring.boot.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session</artifactId>
-            <version>${spring.session.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-            <version>${spring.boot.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>

@@ -1,21 +1,15 @@
 logging:
   level:
     org.springframework.security: DEBUG
-security:
-  sessions: ALWAYS
 zuul:
   routes:
-#    ui:
-#      url: http://localhost:9001
-#      sensitive-headers:
+    ui:
+      path: /*
+      url: http://localhost:9001
+      sensitive-headers:
 #    admin:
 #      url: http://localhost:8082
 #      sensitive-headers:
-    resource:
-      url: http://localhost:9000
-      sensitive-headers:
-spring:
-  session:
-    store-type: mongo
-    mongo:
-      collection-name: usersessions
+#    resource:
+#      url: http://localhost:9000
+#      sensitive-headers:
