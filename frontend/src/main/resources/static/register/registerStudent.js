@@ -15,6 +15,7 @@ function RegisterStudentController(StudentService, $location, $scope) {
             .then(function (response) {
                 if (response.success) {
                     console.log('Registration successful');
+                    $scope.student = {};
                     $location.path('/main');
                 } else {
                     console.log(response.message);
