@@ -13,7 +13,6 @@ public class GatewayApplication {
 		SpringApplication.run(GatewayApplication.class, args);
 	}
 
-
 	@Bean
 	public LoggingFilter simpleFilter() {
 		return new LoggingFilter();
