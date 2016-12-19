@@ -36,7 +36,15 @@ public class StudentServiceImpl implements StudentService {
 
 	public void addOrUpdateStudent(Student student) {
 		LOGGER.info("Saving student");
-		repository.save(student);
+
+		List<Student> students = repository.findByEmail(student.getEmail());
+
+		if(students.isEmpty()) {
+			repository.save(student);
+		}
+		else {
+			LOGGER.info("Error email " + student.getEmail() + " already in use");
+		}
 	}
 
 	public long studentCount() {

@@ -7,7 +7,6 @@ import java.util.Set;
 
 @Document(collection = "student")
 public class Student extends AbstractUser{
-	private boolean activated;
 	private String faculty;
 	private String cathedra;
 	private String github;
@@ -17,23 +16,14 @@ public class Student extends AbstractUser{
 	public Student() {}
 
 	public Student(String id, String firstName, String lastName, String email, String linkedin, String password,
-				   boolean activated, String faculty, String cathedra, String github, String about,
-				   Set<Specialization> specializations) {
-		super(id, firstName, lastName, email, linkedin, password);
-		this.activated = activated;
+				   boolean isActivated, boolean isEmailVerified, String faculty, String cathedra, String github,
+				   String about, Set<Specialization> specializations) {
+		super(id, firstName, lastName, email, linkedin, password, isActivated, isEmailVerified);
 		this.faculty = faculty;
 		this.cathedra = cathedra;
 		this.github = github;
 		this.about = about;
 		this.specializations = specializations;
-	}
-
-	public boolean isActivated() {
-		return activated;
-	}
-
-	public void setActivated(boolean activated) {
-		this.activated = activated;
 	}
 
 	public String getFaculty() {
@@ -84,7 +74,6 @@ public class Student extends AbstractUser{
 
 		Student student = (Student) o;
 
-		if (activated != student.activated) return false;
 		if (!faculty.equals(student.faculty)) return false;
 		if (!cathedra.equals(student.cathedra)) return false;
 		if (!github.equals(student.github)) return false;
@@ -96,7 +85,6 @@ public class Student extends AbstractUser{
 	@Override
 	public int hashCode() {
 		int result = super.hashCode();
-		result = 31 * result + (activated ? 1 : 0);
 		result = 31 * result + faculty.hashCode();
 		result = 31 * result + cathedra.hashCode();
 		result = 31 * result + github.hashCode();

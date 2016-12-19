@@ -10,16 +10,21 @@ public abstract class AbstractUser {
 	protected String email;
 	protected String linkedin;
 	protected String password;
+	protected boolean isActivated;
+	protected boolean isEmailVerified;
 
 	public AbstractUser() {}
 
-	public AbstractUser(String id, String firstName, String lastName, String email, String linkedin, String password) {
+	public AbstractUser(String id, String firstName, String lastName, String email, String linkedin, String password,
+						boolean isActivated, boolean isEmailVerified) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.linkedin = linkedin;
 		this.password = password;
+		this.isActivated = isActivated;
+		this.isEmailVerified = isEmailVerified;
 	}
 
 	public String getId() {
@@ -70,6 +75,22 @@ public abstract class AbstractUser {
 		this.password = password;
 	}
 
+	public boolean isActivated() {
+		return isActivated;
+	}
+
+	public void setActivated(boolean activated) {
+		isActivated = activated;
+	}
+
+	public boolean isEmailVerified() {
+		return isEmailVerified;
+	}
+
+	public void setEmailVerified(boolean emailVerified) {
+		isEmailVerified = emailVerified;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -77,6 +98,8 @@ public abstract class AbstractUser {
 
 		AbstractUser that = (AbstractUser) o;
 
+		if (isActivated != that.isActivated) return false;
+		if (isEmailVerified != that.isEmailVerified) return false;
 		if (!id.equals(that.id)) return false;
 		if (!firstName.equals(that.firstName)) return false;
 		if (!lastName.equals(that.lastName)) return false;
@@ -94,6 +117,8 @@ public abstract class AbstractUser {
 		result = 31 * result + email.hashCode();
 		result = 31 * result + linkedin.hashCode();
 		result = 31 * result + password.hashCode();
+		result = 31 * result + (isActivated ? 1 : 0);
+		result = 31 * result + (isEmailVerified ? 1 : 0);
 		return result;
 	}
 }
