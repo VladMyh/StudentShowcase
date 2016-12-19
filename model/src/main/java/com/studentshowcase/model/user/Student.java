@@ -16,9 +16,10 @@ public class Student extends AbstractUser{
 
 	public Student() {}
 
-	public Student(String id, String firstName, String lastName, String email, String linkedin, boolean activated,
-				   String faculty, String cathedra, String github, String about, Set<Specialization> specializations) {
-		super(id, firstName, lastName, email, linkedin);
+	public Student(String id, String firstName, String lastName, String email, String linkedin, String password,
+				   boolean activated, String faculty, String cathedra, String github, String about,
+				   Set<Specialization> specializations) {
+		super(id, firstName, lastName, email, linkedin, password);
 		this.activated = activated;
 		this.faculty = faculty;
 		this.cathedra = cathedra;

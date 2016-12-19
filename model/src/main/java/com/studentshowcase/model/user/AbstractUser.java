@@ -9,15 +9,17 @@ public abstract class AbstractUser {
 	protected String lastName;
 	protected String email;
 	protected String linkedin;
+	protected String password;
 
 	public AbstractUser() {}
 
-	public AbstractUser(String id, String firstName, String lastName, String email, String linkedin) {
+	public AbstractUser(String id, String firstName, String lastName, String email, String linkedin, String password) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.linkedin = linkedin;
+		this.password = password;
 	}
 
 	public String getId() {
@@ -60,6 +62,14 @@ public abstract class AbstractUser {
 		this.linkedin = linkedin;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -71,7 +81,8 @@ public abstract class AbstractUser {
 		if (!firstName.equals(that.firstName)) return false;
 		if (!lastName.equals(that.lastName)) return false;
 		if (!email.equals(that.email)) return false;
-		return linkedin.equals(that.linkedin);
+		if (!linkedin.equals(that.linkedin)) return false;
+		return password.equals(that.password);
 
 	}
 
@@ -82,6 +93,7 @@ public abstract class AbstractUser {
 		result = 31 * result + lastName.hashCode();
 		result = 31 * result + email.hashCode();
 		result = 31 * result + linkedin.hashCode();
+		result = 31 * result + password.hashCode();
 		return result;
 	}
 }
