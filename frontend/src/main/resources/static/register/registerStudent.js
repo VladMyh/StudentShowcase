@@ -9,6 +9,7 @@ function RegisterStudentController(StudentService, $location, $scope) {
     $scope.student.lastName = "";
     $scope.student.email = "";
     $scope.student.password = "";
+    $scope.student.studentInfo = {};
 
     $scope.register = function () {
         StudentService.Create($scope.student)

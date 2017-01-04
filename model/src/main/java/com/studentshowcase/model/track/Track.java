@@ -1,11 +1,10 @@
-package com.studentshowcase.model.specialization;
+package com.studentshowcase.model.track;
 
-import com.studentshowcase.model.user.Teacher;
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 
-public class Specialization {
+public class Track {
 	@Id
 	private String id;
 	private String title;
@@ -13,19 +12,19 @@ public class Specialization {
 	private Date endDate;
 	private Rating rating;
 	private String review;
-	private Teacher teacher;
+	private String teacherId;
 
-	public Specialization() {}
+	public Track() {}
 
-	public Specialization(String id, String title, Date startDate, Date endDate,
-						  Rating rating, String review, Teacher teacher) {
+	public Track(String id, String title, Date startDate, Date endDate,
+				 Rating rating, String review, String teacherId) {
 		this.id = id;
 		this.title = title;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.rating = rating;
 		this.review = review;
-		this.teacher = teacher;
+		this.teacherId = teacherId;
 	}
 
 	public String getId() {
@@ -76,12 +75,12 @@ public class Specialization {
 		this.review = review;
 	}
 
-	public Teacher getTeacher() {
-		return teacher;
+	public String getTeacher() {
+		return teacherId;
 	}
 
-	public void setTeacher(Teacher teacher) {
-		this.teacher = teacher;
+	public void setTeacher(String teacherId) {
+		this.teacherId = teacherId;
 	}
 
 	@Override
@@ -89,7 +88,7 @@ public class Specialization {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 
-		Specialization that = (Specialization) o;
+		Track that = (Track) o;
 
 		if (!id.equals(that.id)) return false;
 		if (!title.equals(that.title)) return false;
@@ -97,7 +96,7 @@ public class Specialization {
 		if (endDate != null ? !endDate.equals(that.endDate) : that.endDate != null) return false;
 		if (rating != that.rating) return false;
 		if (review != null ? !review.equals(that.review) : that.review != null) return false;
-		return teacher.equals(that.teacher);
+		return teacherId.equals(that.teacherId);
 
 	}
 
@@ -109,7 +108,7 @@ public class Specialization {
 		result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
 		result = 31 * result + (rating != null ? rating.hashCode() : 0);
 		result = 31 * result + (review != null ? review.hashCode() : 0);
-		result = 31 * result + teacher.hashCode();
+		result = 31 * result + teacherId.hashCode();
 		return result;
 	}
 }

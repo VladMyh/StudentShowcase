@@ -1,29 +1,25 @@
-package com.studentshowcase.model.user;
+package com.studentshowcase.model.user.userinfo;
 
-import com.studentshowcase.model.specialization.Specialization;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.studentshowcase.model.track.Track;
 
 import java.util.Set;
 
-@Document(collection = "student")
-public class Student extends AbstractUser{
+public class StudentInfo {
 	private String faculty;
 	private String cathedra;
 	private String github;
 	private String about;
-	private Set<Specialization> specializations;
+	private Set<Track> tracks;
 
-	public Student() {}
+	public StudentInfo() {}
 
-	public Student(String id, String firstName, String lastName, String email, String linkedin, String password,
-				   boolean isActivated, boolean isEmailVerified, String faculty, String cathedra, String github,
-				   String about, Set<Specialization> specializations) {
-		super(id, firstName, lastName, email, linkedin, password, isActivated, isEmailVerified);
+	public StudentInfo(String faculty, String cathedra, String github,
+					   String about, Set<Track> tracks) {
 		this.faculty = faculty;
 		this.cathedra = cathedra;
 		this.github = github;
 		this.about = about;
-		this.specializations = specializations;
+		this.tracks = tracks;
 	}
 
 	public String getFaculty() {
@@ -58,12 +54,12 @@ public class Student extends AbstractUser{
 		this.about = about;
 	}
 
-	public Set<Specialization> getSpecializations() {
-		return specializations;
+	public Set<Track> getTracks() {
+		return tracks;
 	}
 
-	public void setSpecializations(Set<Specialization> specializations) {
-		this.specializations = specializations;
+	public void setTracks(Set<Track> tracks) {
+		this.tracks = tracks;
 	}
 
 	@Override
@@ -72,13 +68,13 @@ public class Student extends AbstractUser{
 		if (o == null || getClass() != o.getClass()) return false;
 		if (!super.equals(o)) return false;
 
-		Student student = (Student) o;
+		StudentInfo student = (StudentInfo) o;
 
 		if (!faculty.equals(student.faculty)) return false;
 		if (!cathedra.equals(student.cathedra)) return false;
 		if (!github.equals(student.github)) return false;
 		if (about != null ? !about.equals(student.about) : student.about != null) return false;
-		return specializations != null ? specializations.equals(student.specializations) : student.specializations == null;
+		return tracks != null ? tracks.equals(student.tracks) : student.tracks == null;
 
 	}
 
@@ -89,7 +85,7 @@ public class Student extends AbstractUser{
 		result = 31 * result + cathedra.hashCode();
 		result = 31 * result + github.hashCode();
 		result = 31 * result + (about != null ? about.hashCode() : 0);
-		result = 31 * result + (specializations != null ? specializations.hashCode() : 0);
+		result = 31 * result + (tracks != null ? tracks.hashCode() : 0);
 		return result;
 	}
 }

@@ -1,4 +1,4 @@
-package com.studentshowcase.model.specialization;
+package com.studentshowcase.model.track;
 
 public enum Rating {
 	ONE("One star"),
