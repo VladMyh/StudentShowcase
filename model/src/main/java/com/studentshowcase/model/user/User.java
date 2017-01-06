@@ -75,19 +75,19 @@ public class User {
 		this.linkedin = linkedin;
 	}
 
-	public boolean isActivated() {
+	public boolean getIsActivated() {
 		return isActivated;
 	}
 
-	public void setActivated(boolean activated) {
+	public void setIsActivated(boolean activated) {
 		isActivated = activated;
 	}
 
-	public boolean isEmailVerified() {
+	public boolean getIsEmailVerified() {
 		return isEmailVerified;
 	}
 
-	public void setEmailVerified(boolean emailVerified) {
+	public void setIsEmailVerified(boolean emailVerified) {
 		isEmailVerified = emailVerified;
 	}
 
@@ -122,6 +122,7 @@ public class User {
 	public void setAdminInfo(AdminInfo adminInfo) {
 		this.adminInfo = adminInfo;
 	}
+
 
 	@Override
 	public boolean equals(Object o) {

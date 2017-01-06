@@ -8,6 +8,13 @@ import java.util.List;
 
 @Repository
 public interface MongoUserRepository extends PagingAndSortingRepository<User, String>{
+
+	/**
+	 * Finds users by email.
+	 *
+	 * @param email user email.
+	 * @return list of users found with given email.
+	 */
 	List<User> findByEmail(String email);
 
 	/**
@@ -18,10 +25,10 @@ public interface MongoUserRepository extends PagingAndSortingRepository<User, St
 	Long countByStudentInfoNotNull();
 
 	/**
-	 * Returns student by id
+	 * Returns student by id.
 	 *
-	 * @param id id of the user
-	 * @return   student entity
+	 * @param id id of the user.
+	 * @return   student entity.
 	 */
 	User findOneByIdAndStudentInfoNotNull(String id);
 

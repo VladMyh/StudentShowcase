@@ -16,7 +16,6 @@
         <spring.boot.version>1.4.2.RELEASE</spring.boot.version>
         <spring.session.version>1.2.2.RELEASE</spring.session.version>
         <apache.httpconponents.version>4.5.2</apache.httpconponents.version>
-        <spring.security.version>4.2.0.RELEASE</spring.security.version>
     </properties>
 
     <dependencies>

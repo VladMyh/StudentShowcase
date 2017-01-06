@@ -1,4 +1,4 @@
-package com.studentshowcase.restcontroller;
+package com.studentshowcase.restcontroller.controller;
 
 import com.studentshowcase.model.user.User;
 import com.studentshowcase.model.user.userinfo.StudentInfo;
