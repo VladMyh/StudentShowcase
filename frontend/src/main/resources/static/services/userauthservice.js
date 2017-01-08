@@ -3,21 +3,19 @@
 app.factory('AuthService', AuthService);
 
 AuthService.$inject = ['$http'];
-function AuthService($http, Session) {
+function AuthService($http) {
     var authService = {};
 
     authService.login = function (credentials) {
-
-        var headers = credentials ? {authorization : "Basic "
-        + btoa(credentials.email + ":" + credentials.password)
-        } : {};
-
-        return $http
-            .get('/api/user', {headers : headers})
+        return $http({
+            method: 'POST',
+            url: '/api/user',
+            data: { email: credentials.email, password: credentials.password}
+            //headers: {authorization: headers}
+        })
             .then(function (res) {
-                Session.create(res.data.id, res.data.user.id, res.data.user.role);
-                return res.data.user;
-                console.log("Creating session: " + res.data.key);
+                console.log("Creating session: " + res.data.token);
+                return res.data.token;
             });
     };
 
