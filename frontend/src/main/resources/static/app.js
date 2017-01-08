@@ -4,8 +4,8 @@ var app = angular.module('app', ['ngRoute']);
 
 app.config(config);
 
-config.$inject = ['$locationProvider', '$routeProvider'];
-function config($locationProvider, $routeProvider) {
+config.$inject = ['$locationProvider', '$routeProvider', '$httpProvider'];
+function config($locationProvider, $routeProvider, $httpProvider) {
     $locationProvider.hashPrefix('!');
 
     $routeProvider
@@ -22,4 +22,24 @@ function config($locationProvider, $routeProvider) {
             controller: 'RegisterStudentController'
         })
         .otherwise({redirectTo: '/main'});
+
+    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+}
+
+app.constant('USER_ROLES', {
+    admin : 'ADMIN',
+    student : 'STUDENT',
+    teacher : 'TEACHER',
+    employer : 'EMPLOYER'
+});
+
+app.controller('ApplicationController', ApplicationController);
+ApplicationController.$inject = ['AuthService', '$scope'];
+
+function ApplicationController(AuthService, $scope) {
+    $scope.user = null;
+
+    $scope.setCurrentUser = function (user) {
+        $scope.currentUser = user;
+    };
 }

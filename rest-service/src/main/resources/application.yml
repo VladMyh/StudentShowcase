@@ -5,4 +5,8 @@ spring:
     mongodb.uri: mongodb://127.0.0.1:27017/studentShowcase
 server:
   port: 9000
+jwt:
+  header: Authorization
+  secret: mySecret
+  expiration: 604800
 
