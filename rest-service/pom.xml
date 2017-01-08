@@ -21,6 +21,7 @@
         <spring.boot.version>1.4.2.RELEASE</spring.boot.version>
         <spring.session.version>1.2.2.RELEASE</spring.session.version>
         <spring.security.version>4.2.0.RELEASE</spring.security.version>
+        <jjwt.version>0.7.0</jjwt.version>
     </properties>
 
     <dependencies>
@@ -40,6 +41,12 @@
             <groupId>com.studentshowcase</groupId>
             <artifactId>repository</artifactId>
             <version>${repository.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt.version}</version>
         </dependency>
 
         <!--Spring-->
@@ -110,6 +117,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>

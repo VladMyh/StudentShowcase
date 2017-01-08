@@ -1,8 +1,21 @@
 package com.studentshowcase.restcontroller.controller;
 
+import com.studentshowcase.restcontroller.security.jwt.JwtAuthenticationRequest;
+import com.studentshowcase.restcontroller.security.jwt.JwtAuthenticationResponse;
+import com.studentshowcase.restcontroller.security.jwt.JwtTokenUtil;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.token.DefaultToken;
 import org.springframework.security.core.token.Token;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,36 +26,43 @@ public class AuthController {
 
 	private static final Logger LOGGER = Logger.getLogger(AuthController.class);
 
+	@Value("${jwt.header}")
+	private String tokenHeader;
+
+	private AuthenticationManager authenticationManager;
+	private JwtTokenUtil jwtTokenUtil;
+	private UserDetailsService userDetailsService;
+
+	@Autowired
+	public void setAuthenticationManager(AuthenticationManager authenticationManager) {
+		this.authenticationManager = authenticationManager;
+	}
+
+	@Autowired
+	public void setJwtTokenUtil(JwtTokenUtil jwtTokenUtil) {
+		this.jwtTokenUtil = jwtTokenUtil;
+	}
+
+	@Autowired
+	public void setUserDetailsService(UserDetailsService userDetailsService) {
+		this.userDetailsService = userDetailsService;
+	}
+
 	@RequestMapping("/user")
-	public Token user(Principal user) {
-		return new DefaultToken("token", System.currentTimeMillis(), user.getName());
-	}
-}
+	public ResponseEntity<?> user(@RequestBody JwtAuthenticationRequest authenticationRequest) {
+		LOGGER.info("Trying to authenticate user");
 
-class UserCredentialsDTO {
-	private String email;
-	private String password;
+		final Authentication authentication = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(
+						authenticationRequest.getEmail(),
+						authenticationRequest.getPassword()
+				)
+		);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
 
-	public UserCredentialsDTO(String email, String password) {
-		this.email = email;
-		this.password = password;
-	}
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
+		final String token = jwtTokenUtil.generateToken(userDetails);
 
-	public UserCredentialsDTO() {}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+		return ResponseEntity.ok(new JwtAuthenticationResponse(token));
 	}
 }
