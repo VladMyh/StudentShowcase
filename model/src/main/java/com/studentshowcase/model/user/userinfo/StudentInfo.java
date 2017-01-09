@@ -7,16 +7,18 @@ import java.util.Set;
 public class StudentInfo {
 	private String faculty;
 	private String cathedra;
+	private String group;
 	private String github;
 	private String about;
 	private Set<Track> tracks;
 
 	public StudentInfo() {}
 
-	public StudentInfo(String faculty, String cathedra, String github,
-					   String about, Set<Track> tracks) {
+	public StudentInfo(String faculty, String cathedra, String group,
+					   String github, String about, Set<Track> tracks) {
 		this.faculty = faculty;
 		this.cathedra = cathedra;
+		this.group = group;
 		this.github = github;
 		this.about = about;
 		this.tracks = tracks;
@@ -62,28 +64,36 @@ public class StudentInfo {
 		this.tracks = tracks;
 	}
 
+	public String getGroup() {
+		return group;
+	}
+
+	public void setGroup(String group) {
+		this.group = group;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		if (!super.equals(o)) return false;
 
-		StudentInfo student = (StudentInfo) o;
+		StudentInfo info = (StudentInfo) o;
 
-		if (!faculty.equals(student.faculty)) return false;
-		if (!cathedra.equals(student.cathedra)) return false;
-		if (!github.equals(student.github)) return false;
-		if (about != null ? !about.equals(student.about) : student.about != null) return false;
-		return tracks != null ? tracks.equals(student.tracks) : student.tracks == null;
+		if (faculty != null ? !faculty.equals(info.faculty) : info.faculty != null) return false;
+		if (cathedra != null ? !cathedra.equals(info.cathedra) : info.cathedra != null) return false;
+		if (group != null ? !group.equals(info.group) : info.group != null) return false;
+		if (github != null ? !github.equals(info.github) : info.github != null) return false;
+		if (about != null ? !about.equals(info.about) : info.about != null) return false;
+		return tracks != null ? tracks.equals(info.tracks) : info.tracks == null;
 
 	}
 
 	@Override
 	public int hashCode() {
-		int result = super.hashCode();
-		result = 31 * result + faculty.hashCode();
-		result = 31 * result + cathedra.hashCode();
-		result = 31 * result + github.hashCode();
+		int result = faculty != null ? faculty.hashCode() : 0;
+		result = 31 * result + (cathedra != null ? cathedra.hashCode() : 0);
+		result = 31 * result + (group != null ? group.hashCode() : 0);
+		result = 31 * result + (github != null ? github.hashCode() : 0);
 		result = 31 * result + (about != null ? about.hashCode() : 0);
 		result = 31 * result + (tracks != null ? tracks.hashCode() : 0);
 		return result;
