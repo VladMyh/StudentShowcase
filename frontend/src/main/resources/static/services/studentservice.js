@@ -19,6 +19,19 @@ function StudentService($http, User) {
         });
     };
 
+    service.GetPage = function(page, size, sort) {
+        return $http({
+            method: 'GET',
+            url: '/api/students/pages',
+            params: {
+                page: page,
+                size: size,
+                sort: sort
+            },
+            headers: {authorization: User.token}
+        });
+    };
+
     function handleSuccess(res) {
         return res.data;
     }

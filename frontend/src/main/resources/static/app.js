@@ -21,6 +21,10 @@ function config($locationProvider, $routeProvider, $httpProvider) {
             templateUrl: 'register/register_student.html',
             controller: 'RegisterStudentController'
         })
+        .when('/admin/students', {
+            templateUrl: 'admin/allstudents/allstudents.html',
+            controller: 'AllStudentsController'
+        })
         .otherwise({redirectTo: '/main'});
 
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
