@@ -2,8 +2,8 @@
 
 app.factory('StudentService', StudentService);
 
-StudentService.$inject = ['$http'];
-function StudentService($http) {
+StudentService.$inject = ['$http', 'User'];
+function StudentService($http, User) {
     var service = {};
 
     service.Create = Create;
@@ -16,7 +16,12 @@ function StudentService($http) {
     }
 
     function Create(data) {
-        return $http.post('/api/students', data).then(handleSuccess, handleError('Error creating student'));
+        return $http({
+            method: 'POST',
+            url: '/api/students',
+            headers: {authorization: User.token},
+            data: data
+        });
     }
 
     function handleSuccess(res) {

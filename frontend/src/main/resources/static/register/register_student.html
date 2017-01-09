@@ -2,10 +2,42 @@
     <h1>Student Registration</h1>
 
     <form novalidate class="simple-form" ng-submit="register(student)">
-        <label>First Name: <input type="text" ng-model="student.firstName" /></label><br />
-        <label>Last Name: <input type="text" ng-model="student.lastName" /></label><br />
-        <label>E-mail: <input type="email" ng-model="student.email" /></label><br />
-        <label>Password: <input type="password" ng-model="student.password" /></label><br />
+        <div class="form-group">
+            <label for="InputFName">First name</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="InputFName" name="InputFName"
+                       ng-model="student.firstName" placeholder="first name" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="InputLName">Last name</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="InputLName" name="InputLName"
+                       ng-model="student.lastName" placeholder="last name" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="InputEmail">Email</label>
+            <div class="input-group">
+                <input type="email" class="form-control" id="InputEmail" name="InputEmail"
+                        ng-model="student.email" placeholder="email" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="InputPassword">Password</label>
+            <div class="input-group">
+                <input type="password" class="form-control" id="InputPassword" name="InputPassword"
+                       ng-model="student.password" placeholder="password" required>
+            </div>
+        </div>
+
+        <!--<label>First Name: <input type="text" ng-model="student.firstName" /></label><br />-->
+        <!--<label>Last Name: <input type="text" ng-model="student.lastName" /></label><br />-->
+        <!--<label>E-mail: <input type="email"  /></label><br />-->
+        <!--<label>Password: <input type="password" ng-model="student.password" /></label><br />-->
 
         <input type="submit" value="Register" />
     </form>

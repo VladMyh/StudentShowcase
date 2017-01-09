@@ -2,8 +2,8 @@
 
 app.factory('AuthService', AuthService);
 
-AuthService.$inject = ['$http'];
-function AuthService($http) {
+AuthService.$inject = ['$http', 'User'];
+function AuthService($http, User) {
     var authService = {};
 
     authService.login = function (credentials) {
@@ -11,11 +11,9 @@ function AuthService($http) {
             method: 'POST',
             url: '/api/user',
             data: { email: credentials.email, password: credentials.password}
-            //headers: {authorization: headers}
         })
             .then(function (res) {
-                console.log("Creating session: " + res.data.token);
-                return res.data.token;
+                User.create(res.data.token, res.data.role, true);
             });
     };
 

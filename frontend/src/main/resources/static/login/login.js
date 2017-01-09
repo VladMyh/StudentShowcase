@@ -1,9 +1,9 @@
 'use strict';
 
 app.controller('LoginController', LoginController);
-LoginController.$inject = ['AuthService', '$scope', '$rootScope'];
+LoginController.$inject = ['AuthService', '$scope', '$location', '$rootScope', 'User'];
 
-function LoginController(AuthService, $scope, $rootScope) {
+function LoginController(AuthService, $scope, $location, $rootScope, User) {
     $scope.credentials = {
         email : '',
         password : ''
@@ -12,11 +12,16 @@ function LoginController(AuthService, $scope, $rootScope) {
     $scope.login = function (credentials) {
         AuthService
             .login(credentials)
-            .then(function (user) {
-                //$scope.setCurrentUser(user);
-                console.log("login page success");
+            .then(function (res) {
+                $location.path("/main");
                 });
     };
 
+    var init = function () {
+        if(User.authenticated) {
+            $location.path("/main");
+        }
+    };
 
+    init();
 }

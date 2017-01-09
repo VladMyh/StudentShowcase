@@ -26,6 +26,24 @@ function config($locationProvider, $routeProvider, $httpProvider) {
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 }
 
+app.service('User', function() {
+    this.token = null;
+    this.role = null;
+    this.authenticated = false;
+
+    this.create = function (token, role, auth) {
+        this.token = token;
+        this.role = role;
+        this.authenticated = auth;
+    };
+
+    this.delete = function () {
+        this.role = null;
+        this.token = null;
+        this.authenticated = false;
+    };
+});
+
 app.constant('USER_ROLES', {
     admin : 'ADMIN',
     student : 'STUDENT',
@@ -34,12 +52,8 @@ app.constant('USER_ROLES', {
 });
 
 app.controller('ApplicationController', ApplicationController);
-ApplicationController.$inject = ['AuthService', '$scope'];
+ApplicationController.$inject = ['$scope', 'User'];
 
-function ApplicationController(AuthService, $scope) {
-    $scope.user = null;
+function ApplicationController($scope, User) {
 
-    $scope.setCurrentUser = function (user) {
-        $scope.currentUser = user;
-    };
 }
