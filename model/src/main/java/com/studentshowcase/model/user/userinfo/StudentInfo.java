@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class StudentInfo {
 	private String faculty;
-	private String cathedra;
+	private String department;
 	private String group;
 	private String github;
 	private String about;
@@ -14,10 +14,10 @@ public class StudentInfo {
 
 	public StudentInfo() {}
 
-	public StudentInfo(String faculty, String cathedra, String group,
+	public StudentInfo(String faculty, String department, String group,
 					   String github, String about, Set<Track> tracks) {
 		this.faculty = faculty;
-		this.cathedra = cathedra;
+		this.department = department;
 		this.group = group;
 		this.github = github;
 		this.about = about;
@@ -32,12 +32,12 @@ public class StudentInfo {
 		this.faculty = faculty;
 	}
 
-	public String getCathedra() {
-		return cathedra;
+	public String getDepartment() {
+		return department;
 	}
 
-	public void setCathedra(String cathedra) {
-		this.cathedra = cathedra;
+	public void setDepartment(String department) {
+		this.department = department;
 	}
 
 	public String getGithub() {
@@ -80,7 +80,7 @@ public class StudentInfo {
 		StudentInfo info = (StudentInfo) o;
 
 		if (faculty != null ? !faculty.equals(info.faculty) : info.faculty != null) return false;
-		if (cathedra != null ? !cathedra.equals(info.cathedra) : info.cathedra != null) return false;
+		if (department != null ? !department.equals(info.department) : info.department != null) return false;
 		if (group != null ? !group.equals(info.group) : info.group != null) return false;
 		if (github != null ? !github.equals(info.github) : info.github != null) return false;
 		if (about != null ? !about.equals(info.about) : info.about != null) return false;
@@ -91,7 +91,7 @@ public class StudentInfo {
 	@Override
 	public int hashCode() {
 		int result = faculty != null ? faculty.hashCode() : 0;
-		result = 31 * result + (cathedra != null ? cathedra.hashCode() : 0);
+		result = 31 * result + (department != null ? department.hashCode() : 0);
 		result = 31 * result + (group != null ? group.hashCode() : 0);
 		result = 31 * result + (github != null ? github.hashCode() : 0);
 		result = 31 * result + (about != null ? about.hashCode() : 0);
