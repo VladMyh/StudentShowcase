@@ -1,12 +1,14 @@
 package com.studentshowcase.restcontroller.controller;
 
+import com.studentshowcase.model.faculty.Faculty;
 import com.studentshowcase.service.faculty.FacultyService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/faculties")
@@ -23,7 +25,7 @@ public class FacultyController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ResponseEntity<?> getAdd() {
-        return ResponseEntity.ok(facultyService.getAllFaculties());
+    public List<Faculty> getAdd() {
+        return facultyService.getAllFaculties();
     }
 }

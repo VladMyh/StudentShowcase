@@ -34,11 +34,57 @@
             </div>
         </div>
 
-        <!--<label>First Name: <input type="text" ng-model="student.firstName" /></label><br />-->
-        <!--<label>Last Name: <input type="text" ng-model="student.lastName" /></label><br />-->
-        <!--<label>E-mail: <input type="email"  /></label><br />-->
-        <!--<label>Password: <input type="password" ng-model="student.password" /></label><br />-->
+        <div class="form-group">
+            <label for="InputFaculty">Faculty</label>
+            <div class="input-group">
+                <select class="form-control" id="InputFaculty" name="InputFaculty"
+                       ng-model="student.studentInfo.faculty" ng-options="x.title for x in faculties" required>
+                    </select>
+            </div>
+        </div>
 
-        <input type="submit" value="Register" />
+        <div class="form-group">
+            <label for="InputDepartment">Department</label>
+            <div class="input-group">
+                <select class="form-control" id="InputDepartment" name="InputDepartment"
+                        ng-model="student.studentInfo.department" ng-options="x for x in faculties[0].departments" required>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="InputGroup">Group</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="InputGroup" name="InputGroup"
+                       ng-model="student.studentInfo.group" placeholder="group" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="InputLinkedIn">LinkedIn</label>
+            <div class="input-group">
+                <input type="url" class="form-control" id="InputLinkedIn" name="InputGroup"
+                       ng-model="student.linkedin" placeholder="linkedin" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="InputGithub">Github</label>
+            <div class="input-group">
+                <input type="url" class="form-control" id="InputGithub" name="InputGroup"
+                       ng-model="student.studentInfo.github" placeholder="github" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="InputAbout">About</label>
+            <div class="input-group">
+                <textarea type="text" class="form-control" id="InputAbout" name="InputAbout"
+                       ng-model="student.studentInfo.about" placeholder="About" required>
+                    </textarea>
+            </div>
+        </div>
+
+        <input class="btn btn-primary" type="submit" value="Register" />
     </form>
 </div>

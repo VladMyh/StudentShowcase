@@ -1,9 +1,16 @@
 'use strict';
 
 app.controller('RegisterStudentController', RegisterStudentController);
-RegisterStudentController.$inject = ['StudentService', '$location', '$scope'];
+RegisterStudentController.$inject = ['StudentService', '$location', '$scope', 'FacultyService'];
 
-function RegisterStudentController(StudentService, $location, $scope) {
+function RegisterStudentController(StudentService, $location, $scope, FacultyService) {
+
+    $scope.faculties = {};
+
+    FacultyService.getAll().then(function (res) {
+        $scope.faculties = res.data;
+    });
+
     $scope.student = {};
     $scope.student.firstName = "";
     $scope.student.lastName = "";
@@ -18,7 +25,5 @@ function RegisterStudentController(StudentService, $location, $scope) {
                 $scope.student = {};
                 $location.path('/main');
             });
-    }
-
-
+    };
 }

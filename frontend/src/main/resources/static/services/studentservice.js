@@ -6,23 +6,18 @@ StudentService.$inject = ['$http', 'User'];
 function StudentService($http, User) {
     var service = {};
 
-    service.Create = Create;
-    service.GetById = GetById;
-
-    return service;
-
-    function GetById(id) {
+    service.GetById = function (id) {
         return $http.get('/api/students/' + id).then(handleSuccess, handleError('Error getting student by id'));
-    }
+    };
 
-    function Create(data) {
+    service.Create = function (data) {
         return $http({
             method: 'POST',
             url: '/api/students',
             headers: {authorization: User.token},
             data: data
         });
-    }
+    };
 
     function handleSuccess(res) {
         return res.data;
@@ -33,4 +28,6 @@ function StudentService($http, User) {
             return { success: false, message: error };
         };
     }
+
+    return service;
 }
