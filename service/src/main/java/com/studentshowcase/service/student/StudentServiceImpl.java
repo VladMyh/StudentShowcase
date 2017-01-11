@@ -6,7 +6,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,8 +45,11 @@ public class StudentServiceImpl implements StudentService {
 		return repository.countByStudentInfoNotNull();
 	}
 
-	public Page<User> getPage(Integer page, Integer size, Sort.Direction direction) {
+	public Page<User> getPage(Integer page, Integer size) {
 		LOGGER.info("Getting page of students");
-		return repository.findAll(new PageRequest(page, size, direction));
+		Page<User> result = repository.findAll(new PageRequest(page, size));
+		result.forEach(u -> u.setPassword(null));
+
+		return result;
 	}
 }

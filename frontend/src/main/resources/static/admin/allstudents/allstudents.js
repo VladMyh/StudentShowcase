@@ -4,9 +4,15 @@ app.controller('AllStudentsController', AllStudentsController);
 AllStudentsController.$inject = ['$scope', 'StudentService'];
 
 function AllStudentsController($scope, StudentService) {
-    var students = null;
+    $scope.page = null;
 
-    StudentService.GetPage(1, 10, "asc").then(function (res) {
-        students = res.data;
-    })
+
+
+    var init = function () {
+        StudentService.GetPage(1, 10).then(function (res) {
+            $scope.page = res.data;
+        });
+    };
+
+    init();
 }
