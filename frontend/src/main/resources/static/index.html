@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="/bower_components/html5-boilerplate/dist/css/main.css">
   <script src="/bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://use.fontawesome.com/afe32ada45.js"></script>
 </head>
 <body ng-controller="ApplicationController">
 
@@ -25,13 +26,13 @@
         <a class="navbar-brand" href="#">StudentShowcase</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
-            <div ng-if="User.authenticated">
+            <div ng-if="authenticated">
               <ul class="nav navbar-nav navbar-right">
                 <li ><a href="/#!/account">Account</a></li>
                 <li ><a href="/#!/account">Sign out</a></li>
               </ul>
             </div>
-            <div ng-if="!User.authenticated">
+            <div ng-if="!authenticated">
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="/#!/login">Login</a></li>
                 <li><a href="/#!/registerStudent">Registration</a></li>
@@ -47,9 +48,11 @@
 
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-route.min.js"></script>
+
   <script src="/app.js"></script>
   <script src="/main/main.js"></script>
   <script src="/login/login.js"></script>
+  <script src="/account/myaccount.js"></script>
   <script src="/admin/allstudents/allstudents.js"></script>
   <script src="/register/registerStudent.js"></script>
   <script src="/services/studentservice.js"></script>

@@ -1,0 +1,126 @@
+
+<div ng-controller="MyAccountController">
+
+    <div class="row">
+
+    <div class="row">
+        <div class="col-md-1"></div>
+
+        <div class="col-md-8">
+            <h1 class="">{{userInfo.firstName}} {{userInfo.lastName}}</h1>
+        </div>
+        <div class="col-md-2">
+            <a class="pull-right">
+                <img title="profile image" class="img-circle img-responsive" src="http://www.placehold.it/125x125">
+            </a>
+        </div>
+
+        <div class="col-md-1"></div>
+    </div>
+    <br>
+    <div class="row">
+
+        <div class="col-md-1"></div>
+
+        <div class="col-md-3">
+            <!--left col-->
+            <ul class="list-group">
+                <li class="list-group-item text-muted" contenteditable="false">Profile</li>
+                <li class="list-group-item text-right" ng-show="userInfo.studentInfo.faculty !== null">
+                    <span class="pull-left"><strong class="">Faculty</strong></span> {{userInfo.studentInfo.faculty}}
+                </li>
+                <li class="list-group-item text-right" ng-show="userInfo.studentInfo.department !== null">
+                    <span class="pull-left"><strong class="">Department</strong></span> {{userInfo.studentInfo.department}}
+                </li>
+                <li class="list-group-item text-right" ng-show="userInfo.studentInfo.group !== null">
+                    <span class="pull-left"><strong class="">Group</strong></span> {{userInfo.studentInfo.group}}
+                </li>
+            </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Links <i class="fa fa-link fa-1x"></i></div>
+                <div class="panel-body">
+                    <a ng-show="userInfo.linkedin !== null"
+                       href="{{userInfo.linkedin}}" class="fa fa-linkedin-square fa-3x" aria-hidden="true"></a>
+                    <a ng-show="userInfo.studentInfo.github !== null"
+                       href="{{userInfo.studentInfo.github}}" class="fa fa-github fa-3x" aria-hidden="true"></a>
+
+                </div>
+            </div>
+
+        </div>
+        <!--/col-3-->
+        <div class="col-md-7" style="" contenteditable="false">
+            <div class="panel panel-default">
+                <div class="panel-heading">About</div>
+                <div class="panel-body">
+                    <p>{{userInfo.studentInfo.about}}</p>
+                </div>
+            </div>
+            <div class="panel panel-default target">
+                <div class="panel-heading" contenteditable="false">Tracks</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <img alt="300x200" src="http://placehold.it/600x200">
+                                <div class="caption">
+                                    <h3>
+                                        Lorem ipsum
+                                    </h3>
+                                    <p>
+                                        Vestibulum a justo posuere, pulvinar leo quis, pellentesque mi.
+                                    </p>
+                                    <p>
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <img alt="300x200" src="http://placehold.it/600x200">
+                                <div class="caption">
+                                    <h3>
+                                        Lorem ipsum
+                                    </h3>
+                                    <p>
+                                        In vulputate a arcu vitae imperdiet. Phasellus ut arcu libero.
+                                    </p>
+                                    <p>
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <img alt="300x200" src="http://placehold.it/600x200">
+                                <div class="caption">
+                                    <h3>
+                                        Lorem ipsum
+                                    </h3>
+                                    <p>
+                                        Praesent pulvinar nisl risus, sit amet egestas est fringilla ac.
+                                    </p>
+                                    <p>
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-1"></div>
+    </div>
+
+    </div>
+
+</div>

@@ -17,7 +17,6 @@ public class UserServiceImpl implements UserService{
 		this.repository = repository;
 	}
 
-
 	@Override
 	public User getUserById(String id) {
 		LOGGER.info("Getting user with id = " + id);

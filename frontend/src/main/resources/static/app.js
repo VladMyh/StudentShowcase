@@ -25,6 +25,10 @@ function config($locationProvider, $routeProvider, $httpProvider) {
             templateUrl: 'admin/allstudents/allstudents.html',
             controller: 'AllStudentsController'
         })
+        .when('/account', {
+            templateUrl: 'account/myaccount.html',
+            controller: 'MyAccountController'
+        })
         .otherwise({redirectTo: '/main'});
 
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
@@ -59,5 +63,5 @@ app.controller('ApplicationController', ApplicationController);
 ApplicationController.$inject = ['$scope', 'User'];
 
 function ApplicationController($scope, User) {
-
+    $scope.authenticated = false;
 }

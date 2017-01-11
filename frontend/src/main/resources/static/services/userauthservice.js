@@ -17,19 +17,15 @@ function AuthService($http, User) {
             });
     };
 
-    authService.isAuthenticated = function () {
-        //return !!Session.userId;
-        console.log("isAuthenticated");
-    };
+    authService.myAccountInfo = function () {
+        if(User.token === null)
+            return;
 
-    authService.isAuthorized = function (authorizedRoles) {
-        // if (!angular.isArray(authorizedRoles)) {
-        //     authorizedRoles = [authorizedRoles];
-        // }
-        // return (authService.isAuthenticated() &&
-        // authorizedRoles.indexOf(Session.userRole) !== -1);
-
-        console.log("isAuthorized");
+        return $http({
+            method: 'GET',
+            url: '/api/user/me',
+            headers: {authorization: User.token}
+        });
     };
 
     return authService;
