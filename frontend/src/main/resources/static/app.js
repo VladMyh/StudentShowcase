@@ -29,6 +29,7 @@ function config($locationProvider, $routeProvider, $httpProvider) {
             templateUrl: 'account/myaccount.html',
             controller: 'MyAccountController'
         })
+
         .otherwise({redirectTo: '/main'});
 
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
@@ -60,8 +61,15 @@ app.constant('USER_ROLES', {
 });
 
 app.controller('ApplicationController', ApplicationController);
-ApplicationController.$inject = ['$scope', 'User'];
+ApplicationController.$inject = ['$scope', '$rootScope', '$location', 'User'];
 
-function ApplicationController($scope, User) {
-    $scope.authenticated = false;
+function ApplicationController($scope, $rootScope, $location, User) {
+    $rootScope.authenticated = false;
+
+    $scope.signOut = function () {
+        $rootScope.authenticated = false;
+        User.delete();
+
+        $location.path('/main');
+    }
 }
