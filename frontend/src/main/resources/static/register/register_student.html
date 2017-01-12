@@ -44,7 +44,7 @@
             <label for="InputFaculty">Faculty</label>
             <div class="input-group">
                 <select class="form-control" id="InputFaculty" name="InputFaculty"
-                       ng-model="student.studentInfo.faculty" ng-options="x.title for x in faculties" required>
+                       ng-model="student.studentInfo.faculty" ng-options="x.title for x in faculties">
                     </select>
             </div>
         </div>
@@ -53,7 +53,7 @@
             <label for="InputDepartment">Department</label>
             <div class="input-group">
                 <select class="form-control" id="InputDepartment" name="InputDepartment"
-                        ng-model="student.studentInfo.department" ng-options="x for x in faculties[0].departments" required>
+                        ng-model="student.studentInfo.department" ng-options="x for x in faculties[0].departments">
                 </select>
             </div>
         </div>
@@ -62,7 +62,7 @@
             <label for="InputGroup">Group</label>
             <div class="input-group">
                 <input type="text" class="form-control" id="InputGroup" name="InputGroup"
-                       ng-model="student.studentInfo.group" placeholder="group" required>
+                       ng-model="student.studentInfo.group" placeholder="group">
             </div>
         </div>
 
@@ -70,7 +70,7 @@
             <label for="InputLinkedIn">LinkedIn</label>
             <div class="input-group">
                 <input type="url" class="form-control" id="InputLinkedIn" name="InputGroup"
-                       ng-model="student.linkedin" placeholder="linkedin" required>
+                       ng-model="student.linkedin" placeholder="linkedin">
             </div>
         </div>
 
@@ -78,7 +78,7 @@
             <label for="InputGithub">Github</label>
             <div class="input-group">
                 <input type="url" class="form-control" id="InputGithub" name="InputGroup"
-                       ng-model="student.studentInfo.github" placeholder="github" required>
+                       ng-model="student.studentInfo.github" placeholder="github">
             </div>
         </div>
 
@@ -86,7 +86,7 @@
             <label for="InputAbout">About</label>
             <div class="input-group">
                 <textarea type="text" class="form-control" id="InputAbout" name="InputAbout"
-                       ng-model="student.studentInfo.about" placeholder="About" required>
+                       ng-model="student.studentInfo.about" placeholder="About">
                     </textarea>
             </div>
         </div>

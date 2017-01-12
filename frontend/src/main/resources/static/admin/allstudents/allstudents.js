@@ -7,7 +7,7 @@ function AllStudentsController($scope, StudentService) {
     $scope.page = null;
 
     var init = function () {
-        StudentService.GetPage(1, 10).then(function (res) {
+        StudentService.GetPage(1, 100).then(function (res) {
             $scope.page = res.data;
         });
     };

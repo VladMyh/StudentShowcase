@@ -1,7 +1,6 @@
 package com.studentshowcase.restcontroller.controller;
 
 import com.studentshowcase.model.user.User;
-import com.studentshowcase.model.user.userinfo.StudentInfo;
 import com.studentshowcase.service.student.StudentService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,6 @@ public class StudentController {
 	public void saveOrUpdateStudent(@RequestBody User student) {
 		LOGGER.info("saving student");
 
-		student.setStudentInfo(new StudentInfo());
 		studentService.addOrUpdateStudent(student);
 	}
 
