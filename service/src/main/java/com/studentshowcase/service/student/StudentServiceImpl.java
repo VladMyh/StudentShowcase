@@ -47,7 +47,7 @@ public class StudentServiceImpl implements StudentService {
 
 	public Page<User> getPage(Integer page, Integer size) {
 		LOGGER.info("Getting page of students");
-		Page<User> result = repository.findAll(new PageRequest(page, size));
+		Page<User> result = repository.findAllByStudentInfoNotNull(new PageRequest(page, size));
 		result.forEach(u -> u.setPassword(null));
 
 		return result;
