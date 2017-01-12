@@ -19,6 +19,8 @@ function RegisterStudentController(StudentService, $location, $scope, FacultySer
     $scope.student.studentInfo = {};
 
     $scope.register = function () {
+        $scope.student.studentInfo.faculty = $scope.student.studentInfo.faculty.title;
+
         StudentService.Create($scope.student)
             .then(function (response) {
                 console.log('Registration successful');
