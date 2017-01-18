@@ -2,8 +2,8 @@
 
 app.factory('AuthService', AuthService);
 
-AuthService.$inject = ['$http', 'User'];
-function AuthService($http, User) {
+AuthService.$inject = ['$http', 'User', 'USER_ROLES'];
+function AuthService($http, User, USER_ROLES) {
     var authService = {};
 
     authService.login = function (credentials) {
@@ -13,7 +13,26 @@ function AuthService($http, User) {
             data: { email: credentials.email, password: credentials.password}
         })
             .then(function (res) {
-                User.create(res.data.token, res.data.role, true);
+                var role = null;
+
+                switch (res.data.role) {
+                    case "STUDENT":
+                        role = USER_ROLES.student;
+                        break;
+                    case "ADMIN":
+                        role = USER_ROLES.admin;
+                        break;
+                    case "TEACHER":
+                        role = USER_ROLES.teacher;
+                        break;
+                    case "EMPLOYER":
+                        role = USER_ROLES.employer;
+                        break;
+                    default:
+                        role = USER_ROLES.anonymous;
+                }
+
+                User.create(res.data.token, role, true);
             });
     };
 
