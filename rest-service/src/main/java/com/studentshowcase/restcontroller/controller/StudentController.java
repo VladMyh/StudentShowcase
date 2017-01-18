@@ -18,12 +18,14 @@ public class StudentController {
 	@Autowired
 	public StudentController(StudentService studentService) {
 		LOGGER.info("Initializing StudentController");
+
 		this.studentService = studentService;
 	}
 
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	public User getStudentById(@PathVariable String id) {
 		LOGGER.info("get student by id " + id);
+
 		return studentService.getStudentById(id);
 	}
 
@@ -40,5 +42,13 @@ public class StudentController {
 		LOGGER.info("Getting page number " + page + " of size " + size + " of students");
 
 		return ResponseEntity.ok(studentService.getPage(page - 1, size));
+	}
+
+	@RequestMapping(value = "{id}/tracks", method = RequestMethod.POST)
+	public void addTrack(@PathVariable(name = "id") String studentId,
+									  @RequestBody String trackId) {
+		LOGGER.info("Adding track " + trackId + " to student " + studentId);
+
+		studentService.addTrackToStudent(studentId, trackId);
 	}
 }

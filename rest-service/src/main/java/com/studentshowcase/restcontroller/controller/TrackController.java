@@ -34,4 +34,12 @@ public class TrackController {
 
         return ResponseEntity.ok(trackService.getPage(page - 1, size));
     }
+
+    @RequestMapping(value = "{id}/students", method = RequestMethod.POST)
+    public void addTrack(@PathVariable(name = "id") String trackId,
+                         @RequestBody String studentId) {
+        LOGGER.info("Adding student " + studentId + " to track " + trackId);
+
+        trackService.addStudentToTrack(trackId, studentId);
+    }
 }

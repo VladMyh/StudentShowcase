@@ -44,6 +44,13 @@ function config($locationProvider, $routeProvider, $httpProvider, USER_ROLES) {
                 authorizedRoles: [USER_ROLES.admin]
             }
         })
+        .when('/admin/student/:id/addtrack', {
+            templateUrl: 'admin/student/addtrack/addtrack.html',
+            controller: 'AddTrackToStudentController',
+            data : {
+                authorizedRoles: [USER_ROLES.admin]
+            }
+        })
         .when('/admin/addtrack', {
             templateUrl: 'admin/track/add/addtrack.html',
             controller: 'AddTrackController',

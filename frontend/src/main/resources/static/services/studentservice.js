@@ -31,5 +31,14 @@ function StudentService($http, User) {
         });
     };
 
+    service.AddTrackToStudent = function (trackId, studentId) {
+        return $http({
+            method: 'POST',
+            url: '/api/students/' + studentId + '/tracks',
+            headers: {authorization: User.token},
+            data : trackId
+        });
+    };
+
     return service;
 }

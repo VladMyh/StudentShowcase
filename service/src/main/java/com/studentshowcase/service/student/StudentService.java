@@ -10,4 +10,5 @@ public interface StudentService {
 	void addOrUpdateStudent(User student);
 	long studentCount();
 	Page<User> getPage(Integer page, Integer size);
+	void addTrackToStudent(String studentId, String trackId);
 }

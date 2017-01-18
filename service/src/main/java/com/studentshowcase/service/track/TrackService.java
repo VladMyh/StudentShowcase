@@ -8,4 +8,5 @@ import org.springframework.stereotype.Service;
 public interface TrackService {
     void addOrUpdateTrack(Track track);
     Page<Track> getPage(Integer page, Integer size);
+    void addStudentToTrack(String trackId, String studentId);
 }

@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+
 @Service
 public class TrackServiceImpl implements TrackService {
 
@@ -33,5 +35,27 @@ public class TrackServiceImpl implements TrackService {
         Page<Track> result = trackRepository.findAll(new PageRequest(page, size));
 
         return result;
+    }
+
+    @Override
+    public void addStudentToTrack(String trackId, String studentId) {
+        LOGGER.info("Adding student " + studentId + " to track " + trackId);
+        Track track = trackRepository.findOne(trackId);
+
+        if(track != null) {
+            if(track.getStudentIds() == null) {
+                HashSet<String> students = new HashSet<>();
+                students.add(studentId);
+                track.setStudentIds(students);
+            }
+            else {
+                track.getStudentIds().add(studentId);
+            }
+
+            trackRepository.save(track);
+        }
+        else {
+            LOGGER.info("No track with id " + studentId);
+        }
     }
 }
