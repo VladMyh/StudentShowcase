@@ -1,0 +1,125 @@
+<div ng-controller="ViewStudentController">
+
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <form class="form-horizontal" role="form">
+                <fieldset>
+
+                    <legend>View Student</legend>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="firstName">First Name</label>
+                        <div class="col-sm-9">
+                            <input id="firstName" type="text" class="form-control" disabled
+                                   ng-model="student.firstName">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="lastName">Last Name</label>
+                        <div class="col-sm-9">
+                            <input id="lastName" type="text"  class="form-control" disabled
+                                   ng-model="student.lastName">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="email">Email</label>
+                        <div class="col-sm-9">
+                            <input id="email" type="email" class="form-control" disabled
+                                   ng-model="student.email">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="faculty">Faculty</label>
+                        <div class="col-sm-9">
+                            <input id="faculty" type="email" class="form-control" disabled
+                                   ng-model="student.studentInfo.faculty">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="department">Department</label>
+                        <div class="col-sm-3">
+                            <input id="department" type="text" class="form-control" disabled
+                                   ng-model="student.studentInfo.department">
+                        </div>
+
+                        <label class="col-sm-2 control-label" for="group">Group</label>
+                        <div class="col-sm-3">
+                            <input id="group" type="text" class="form-control" disabled
+                                   ng-model="student.studentInfo.group">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="about">About</label>
+                        <div class="col-sm-9">
+                            <textarea id="about" class="form-control" disabled ng-model="student.studentInfo.about"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="department">Active</label>
+                        <div class="col-sm-2">
+                            <i class="fa fa-check fa-2x" aria-hidden="true"></i>
+                        </div>
+
+                        <label class="col-sm-5 control-label" for="group">Email verified</label>
+                        <div class="col-sm-2">
+                            <i class="fa fa-check fa-2x" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="linkedin">LinkedIn</label>
+                        <div class="col-sm-9">
+                            <input id="linkedin" type="url" class="form-control" disabled
+                                   ng-model="student.linkedin">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="github">GitHub</label>
+                        <div class="col-sm-9">
+                            <input id="github" type="url" class="form-control" disabled
+                                   ng-model="student.studentInfo.github">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="pull-right">
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+
+            <form class="form-horizontal" role="form">
+                <fieldset>
+
+                    <legend>Tracks</legend>
+
+                    <div ng-show="student.studentInfo.tracks !== null">
+                        <p>Tracks!!!!!!!!!!!!</p>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="pull-right">
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+</div>

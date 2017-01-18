@@ -16,6 +16,7 @@
                 <th>Group</th>
                 <th>Active</th>
                 <th>Email verified</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -26,6 +27,10 @@
                 <td>{{student.studentInfo.group}}</td>
                 <td>{{student.isActivated}}</td>
                 <td>{{student.isEmailVerified}}</td>
+                <td>
+                    <a class='btn btn-info btn-xs' ng-click="editStudent(student.id)">
+                        <span class="glyphicon glyphicon-edit"></span> Edit</a>
+                </td>
             </tr>
             </tbody>
         </table>

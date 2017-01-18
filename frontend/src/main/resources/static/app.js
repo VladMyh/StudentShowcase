@@ -31,15 +31,29 @@ function config($locationProvider, $routeProvider, $httpProvider, USER_ROLES) {
             }
         })
         .when('/admin/students', {
-            templateUrl: 'admin/allstudents/allstudents.html',
+            templateUrl: 'admin/student/all/allstudents.html',
             controller: 'AllStudentsController',
             data : {
                 authorizedRoles: [USER_ROLES.admin]
             }
         })
+        .when('/admin/student/:id', {
+            templateUrl: 'admin/student/view/viewstudent.html',
+            controller: 'ViewStudentController',
+            data : {
+                authorizedRoles: [USER_ROLES.admin]
+            }
+        })
         .when('/admin/addtrack', {
-            templateUrl: 'admin/track/addtrack.html',
+            templateUrl: 'admin/track/add/addtrack.html',
             controller: 'AddTrackController',
+            data : {
+                authorizedRoles: [USER_ROLES.admin]
+            }
+        })
+        .when('/admin/tracks', {
+            templateUrl: 'admin/track/all/alltracks.html',
+            controller: 'AllTracksController',
             data : {
                 authorizedRoles: [USER_ROLES.admin]
             }
@@ -66,9 +80,6 @@ run.$inject = ['$rootScope', '$location', 'User', 'USER_ROLES'];
 function run($rootScope, $location, User, USER_ROLES) {
     $rootScope.$on('$routeChangeStart', function (event, next) {
         if(next.data != null) {
-            console.log("ROUTE ROLES: " + next.data.authorizedRoles);
-            console.log("USER ROLES: " + User.role);
-            console.log(User.isAuthorized(next.data.authorizedRoles));
             if (!User.isAuthorized(next.data.authorizedRoles)) {
                 event.preventDefault();
 
@@ -80,10 +91,6 @@ function run($rootScope, $location, User, USER_ROLES) {
                     console.log("not authenticated");
                     $location.path("/login");
                 }
-                console.log("NOT OK");
-            }
-            else {
-                console.log("OK");
             }
         }
     });

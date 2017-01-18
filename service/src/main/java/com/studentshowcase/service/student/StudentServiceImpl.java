@@ -24,7 +24,9 @@ public class StudentServiceImpl implements StudentService {
 
 	public User getStudentById(String id) {
 		LOGGER.info("Getting student with id = " + id);
-		return repository.findOneByIdAndStudentInfoNotNull(id);
+		User user = repository.findOneByIdAndStudentInfoNotNull(id);
+		user.setPassword(null);
+		return user;
 	}
 
 	public void addOrUpdateStudent(User student) {

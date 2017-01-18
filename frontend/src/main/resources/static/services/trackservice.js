@@ -15,5 +15,13 @@ function TrackService($http, User) {
         });
     };
 
+    service.GetPage = function(page, size) {
+        return $http({
+            method: 'GET',
+            url: '/api/tracks/page/' + page + '/size/' + size,
+            headers: {authorization: User.token}
+        });
+    };
+
     return service;
 }
