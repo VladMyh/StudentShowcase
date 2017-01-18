@@ -1,7 +1,5 @@
 package com.studentshowcase.model.user.userinfo;
 
-import com.studentshowcase.model.track.Track;
-
 import java.util.Set;
 
 public class StudentInfo {
@@ -10,12 +8,12 @@ public class StudentInfo {
 	private String group;
 	private String github;
 	private String about;
-	private Set<Track> tracks;
+	private Set<String> tracks;
 
 	public StudentInfo() {}
 
 	public StudentInfo(String faculty, String department, String group,
-					   String github, String about, Set<Track> tracks) {
+					   String github, String about, Set<String> tracks) {
 		this.faculty = faculty;
 		this.department = department;
 		this.group = group;
@@ -56,11 +54,11 @@ public class StudentInfo {
 		this.about = about;
 	}
 
-	public Set<Track> getTracks() {
+	public Set<String> getTracks() {
 		return tracks;
 	}
 
-	public void setTracks(Set<Track> tracks) {
+	public void setTracks(Set<String> tracks) {
 		this.tracks = tracks;
 	}
 

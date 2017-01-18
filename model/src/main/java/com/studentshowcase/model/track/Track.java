@@ -3,28 +3,31 @@ package com.studentshowcase.model.track;
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;
+import java.util.Set;
 
 public class Track {
 	@Id
 	private String id;
 	private String title;
+	private String description;
+	private Integer level;
 	private Date startDate;
 	private Date endDate;
-	private Rating rating;
-	private String review;
 	private String teacherId;
+	private Set<String> studentIds;
 
 	public Track() {}
 
-	public Track(String id, String title, Date startDate, Date endDate,
-				 Rating rating, String review, String teacherId) {
+	public Track(String id, String title, String description, Integer level,
+				 Date startDate, Date endDate, String teacherId, Set<String> studentIds) {
 		this.id = id;
 		this.title = title;
+		this.description = description;
+		this.level = level;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.rating = rating;
-		this.review = review;
 		this.teacherId = teacherId;
+		this.studentIds = studentIds;
 	}
 
 	public String getId() {
@@ -43,6 +46,22 @@ public class Track {
 		this.title = title;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Integer getLevel() {
+		return level;
+	}
+
+	public void setLevel(Integer level) {
+		this.level = level;
+	}
+
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -59,28 +78,20 @@ public class Track {
 		this.endDate = endDate;
 	}
 
-	public Rating getRating() {
-		return rating;
-	}
-
-	public void setRating(Rating rating) {
-		this.rating = rating;
-	}
-
-	public String getReview() {
-		return review;
-	}
-
-	public void setReview(String review) {
-		this.review = review;
-	}
-
-	public String getTeacher() {
+	public String getTeacherId() {
 		return teacherId;
 	}
 
-	public void setTeacher(String teacherId) {
+	public void setTeacherId(String teacherId) {
 		this.teacherId = teacherId;
+	}
+
+	public Set<String> getStudentIds() {
+		return studentIds;
+	}
+
+	public void setStudentIds(Set<String> studentIds) {
+		this.studentIds = studentIds;
 	}
 
 	@Override
@@ -88,27 +99,28 @@ public class Track {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 
-		Track that = (Track) o;
+		Track track = (Track) o;
 
-		if (!id.equals(that.id)) return false;
-		if (!title.equals(that.title)) return false;
-		if (startDate != null ? !startDate.equals(that.startDate) : that.startDate != null) return false;
-		if (endDate != null ? !endDate.equals(that.endDate) : that.endDate != null) return false;
-		if (rating != that.rating) return false;
-		if (review != null ? !review.equals(that.review) : that.review != null) return false;
-		return teacherId.equals(that.teacherId);
-
+		if (!id.equals(track.id)) return false;
+		if (!title.equals(track.title)) return false;
+		if (!description.equals(track.description)) return false;
+		if (!level.equals(track.level)) return false;
+		if (startDate != null ? !startDate.equals(track.startDate) : track.startDate != null) return false;
+		if (endDate != null ? !endDate.equals(track.endDate) : track.endDate != null) return false;
+		if (!teacherId.equals(track.teacherId)) return false;
+		return studentIds.equals(track.studentIds);
 	}
 
 	@Override
 	public int hashCode() {
 		int result = id.hashCode();
 		result = 31 * result + title.hashCode();
+		result = 31 * result + description.hashCode();
+		result = 31 * result + level.hashCode();
 		result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
 		result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
-		result = 31 * result + (rating != null ? rating.hashCode() : 0);
-		result = 31 * result + (review != null ? review.hashCode() : 0);
 		result = 31 * result + teacherId.hashCode();
+		result = 31 * result + studentIds.hashCode();
 		return result;
 	}
 }
