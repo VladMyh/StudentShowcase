@@ -8,7 +8,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class TrackServiceImpl implements TrackService {
@@ -57,5 +59,21 @@ public class TrackServiceImpl implements TrackService {
         else {
             LOGGER.info("No track with id " + studentId);
         }
+    }
+
+    @Override
+    public List<Track> getTracksByIds(List<String> ids) {
+        LOGGER.info("Finding all tracks by ids");
+        List<Track> res = new ArrayList<>();
+
+        for(String id : ids) {
+            Track track = trackRepository.findOne(id);
+
+            if(track != null) {
+                res.add(track);
+            }
+        }
+
+        return res;
     }
 }

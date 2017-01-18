@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 @RestController
 @RequestMapping("/tracks")
 public class TrackController {
@@ -41,5 +44,14 @@ public class TrackController {
         LOGGER.info("Adding student " + studentId + " to track " + trackId);
 
         trackService.addStudentToTrack(trackId, studentId);
+    }
+
+    @RequestMapping(value = "/getAll/{ids}", method = RequestMethod.GET)
+    public ResponseEntity<?> getTracksById(@PathVariable(name = "ids") String ids) {
+        LOGGER.info("Getting multiple tracks");
+
+        List<String> traksIds = Arrays.asList(ids.split(","));
+
+        return ResponseEntity.ok(trackService.getTracksByIds(traksIds));
     }
 }

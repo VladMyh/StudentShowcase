@@ -32,5 +32,13 @@ function TrackService($http, User) {
         });
     };
 
+    service.GetAllByIds = function (ids) {
+        return $http({
+            method: 'GET',
+            url: '/api/tracks/getAll/' + ids,
+            headers: {authorization: User.token},
+        });
+    };
+
     return service;
 }
