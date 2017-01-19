@@ -36,7 +36,7 @@ function TrackService($http, User) {
         return $http({
             method: 'GET',
             url: '/api/tracks/getAll/' + ids,
-            headers: {authorization: User.token},
+            headers: {authorization: User.token}
         });
     };
 

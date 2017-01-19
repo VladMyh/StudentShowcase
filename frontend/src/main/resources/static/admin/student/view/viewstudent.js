@@ -15,10 +15,10 @@ function ViewStudentController($scope, $routeParams, $location, StudentService, 
         StudentService.GetById($routeParams.id).then(function (res) {
             $scope.student = res.data;
 
-            var tracks = res.data.studentInfo.tracks;
-            
+            var ids = $scope.student.studentInfo.tracks;
+            ids = ids.join(",");
 
-            TrackService.GetAllByIds().then(function (res) {
+            TrackService.GetAllByIds(ids).then(function (res) {
                 $scope.tracks = res.data;
             })
         });
