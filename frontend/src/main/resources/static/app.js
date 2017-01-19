@@ -147,9 +147,11 @@ ApplicationController.$inject = ['$scope', '$rootScope', '$location', 'User'];
 
 function ApplicationController($scope, $rootScope, $location, User) {
     $rootScope.authenticated = false;
+    $rootScope.role = null;
 
     $scope.signOut = function () {
         $rootScope.authenticated = false;
+        $rootScope.role = null;
         User.delete();
 
         $location.path('/main');

@@ -14,6 +14,7 @@ function LoginController(AuthService, $scope, $location, $rootScope, User) {
             .login(credentials)
             .then(function (res) {
                 $rootScope.authenticated = true;
+                $rootScope.role = User.role;
                 $location.path("/main");
                 });
     };

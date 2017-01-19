@@ -6,9 +6,12 @@ AddTrackToStudentController.$inject = ['$scope', '$location', '$routeParams', 'T
 function AddTrackToStudentController($scope, $location, $routeParams, TrackService, StudentService) {
     $scope.page = null;
     $scope.studentId = $routeParams.id;
+
     $scope.addTrack = function (trackId, studentId) {
         TrackService.AddStudentToTrack(studentId, trackId);
         StudentService.AddTrackToStudent(trackId, studentId);
+
+        $location.path("/admin/student/" + $scope.studentId);
     };
 
     var init = function () {
