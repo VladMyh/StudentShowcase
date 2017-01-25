@@ -1,4 +1,4 @@
-package com.studentshowcase.restcontroller.registration;
+package com.studentshowcase.service.registration;
 
 import com.studentshowcase.model.user.User;
 import org.springframework.context.ApplicationEvent;

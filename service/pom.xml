@@ -26,6 +26,7 @@
     <properties>
         <model.version>1.0</model.version>
         <repository.version>1.0</repository.version>
+        <spring.boot.version>1.4.2.RELEASE</spring.boot.version>
     </properties>
 
     <dependencies>
@@ -39,6 +40,12 @@
             <groupId>com.studentshowcase</groupId>
             <artifactId>repository</artifactId>
             <version>${repository.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring.boot.version}</version>
         </dependency>
     </dependencies>
 

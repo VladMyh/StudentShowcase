@@ -4,9 +4,14 @@ import com.studentshowcase.model.user.User;
 import com.studentshowcase.model.verificationtoken.VerificationToken;
 import com.studentshowcase.repository.user.MongoUserRepository;
 import com.studentshowcase.repository.vereficationtoken.MongoVerificationTokenRepository;
+import com.studentshowcase.service.registration.OnRegistrationCompleteEvent;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.WebRequest;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -14,13 +19,17 @@ public class UserServiceImpl implements UserService{
 
 	private MongoUserRepository userRepository;
 	private MongoVerificationTokenRepository tokenRepository;
+	private ApplicationEventPublisher eventPublisher;
 
 	@Autowired
-	public UserServiceImpl(MongoUserRepository repository, MongoVerificationTokenRepository tokenRepository) {
+	public UserServiceImpl(MongoUserRepository repository,
+						   MongoVerificationTokenRepository tokenRepository,
+						   ApplicationEventPublisher eventPublisher) {
 		LOGGER.info("Initializing UserServiceImpl");
 
 		this.userRepository = repository;
 		this.tokenRepository = tokenRepository;
+		this.eventPublisher = eventPublisher;
 	}
 
 	@Override
@@ -62,5 +71,31 @@ public class UserServiceImpl implements UserService{
 		LOGGER.info("Getting user by verification token " + token);
 
 		return tokenRepository.findByToken(token).getUser();
+	}
+
+	@Override
+	public User registerUser(User user, WebRequest request) {
+		LOGGER.info("Registering new user");
+
+		List<User> students = userRepository.findByEmail(user.getEmail());
+
+		if(students.isEmpty()) {
+			User registered = userRepository.save(user);
+
+			try {
+				eventPublisher.publishEvent(new OnRegistrationCompleteEvent(registered,
+					                                                        request.getLocale(),
+					                                                        request.getContextPath()));
+			}
+			catch (Exception ex) {
+				LOGGER.error("Couldn't publish event");
+				LOGGER.error(ex.getMessage());
+			}
+		}
+		else {
+			LOGGER.info("Error email " + user.getEmail() + " already in use");
+
+		}
+		return null;
 	}
 }

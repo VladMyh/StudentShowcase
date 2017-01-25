@@ -1,8 +1,8 @@
 package com.studentshowcase.restcontroller.controller;
 
 import com.studentshowcase.model.user.User;
-import com.studentshowcase.restcontroller.registration.OnRegistrationCompleteEvent;
 import com.studentshowcase.service.student.StudentService;
+import com.studentshowcase.service.user.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -17,13 +17,17 @@ public class StudentController {
 	private static final Logger LOGGER = Logger.getLogger(StudentController.class);
 
 	private StudentService studentService;
+	private UserService userService;
 	private ApplicationEventPublisher eventPublisher;
 
 	@Autowired
-	public StudentController(StudentService studentService, ApplicationEventPublisher eventPublisher) {
+	public StudentController(StudentService studentService,
+							 UserService userService,
+							 ApplicationEventPublisher eventPublisher) {
 		LOGGER.info("Initializing StudentController");
 
 		this.studentService = studentService;
+		this.userService = userService;
 		this.eventPublisher = eventPublisher;
 	}
 
@@ -45,19 +49,7 @@ public class StudentController {
 	public void registerStudent(@RequestBody User student, WebRequest request) {
 		LOGGER.info("Registering new student");
 
-		User registered = studentService.registerStudent(student);
-
-		if(registered != null) {
-			LOGGER.info("New student id " + registered.getId());
-			try {
-				String appUrl = request.getContextPath();
-				eventPublisher.publishEvent(new OnRegistrationCompleteEvent(registered, request.getLocale(), appUrl));
-			}
-			catch (Exception ex) {
-				LOGGER.error("Couldn't publish event");
-				LOGGER.error(ex.getMessage());
-			}
-		}
+		userService.registerUser(student, request);
 	}
 
 	@RequestMapping(value = "page/{page}/size/{size}", method = RequestMethod.GET)

@@ -23,7 +23,6 @@ function RegisterStudentController(StudentService, $location, $scope, FacultySer
 
         StudentService.Create($scope.student)
             .then(function (response) {
-                console.log('Registration successful');
                 $scope.student = {};
                 $location.path('/main');
             });
