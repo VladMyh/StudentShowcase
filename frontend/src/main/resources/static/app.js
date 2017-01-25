@@ -27,7 +27,7 @@ function config($locationProvider, $routeProvider, $httpProvider, USER_ROLES) {
             templateUrl: 'register/register_student.html',
             controller: 'RegisterStudentController',
             data : {
-                authorizedRoles: [USER_ROLES.anonymous]
+                authorizedRoles: []
             }
         })
         .when('/admin/students', {
