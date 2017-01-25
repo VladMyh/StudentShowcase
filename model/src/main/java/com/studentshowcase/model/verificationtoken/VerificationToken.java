@@ -1,26 +1,33 @@
 package com.studentshowcase.model.verificationtoken;
 
+import com.studentshowcase.model.user.User;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 
-@Document(collection = "studentVerificationToken")
-public class StudentVerificationToken {
+@Document(collection = "verificationToken")
+public class VerificationToken {
+
+    private static final int EXPIRATION = 60 * 24;
+
     @Id
     private String id;
-    private static final int EXPIRATION = 60 * 24;
-    private String studentId;
+    @DBRef
+    private User user;
     private Date expirationDate;
+    private String token;
 
-    public StudentVerificationToken() {}
+    public VerificationToken() {}
 
-    public StudentVerificationToken(String id, String studentId, Date expirationDate) {
-        this.id = id;
-        this.studentId = studentId;
-        this.expirationDate = expirationDate;
+    public VerificationToken(String token, User user) {
+        super();
+        this.token = token;
+        this.user = user;
+        this.expirationDate = calculateExpiryDate(EXPIRATION);
     }
 
     public String getId() {
@@ -35,12 +42,12 @@ public class StudentVerificationToken {
         return EXPIRATION;
     }
 
-    public String getStudentId() {
-        return studentId;
+    public User getUser() {
+        return user;
     }
 
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Date getExpirationDate() {
@@ -49,6 +56,14 @@ public class StudentVerificationToken {
 
     public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     private Date calculateExpiryDate(int expiryTimeInMinutes) {
@@ -63,19 +78,20 @@ public class StudentVerificationToken {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        StudentVerificationToken that = (StudentVerificationToken) o;
+        VerificationToken that = (VerificationToken) o;
 
         if (!id.equals(that.id)) return false;
-        if (!studentId.equals(that.studentId)) return false;
-        return expirationDate.equals(that.expirationDate);
-
+        if (!user.equals(that.user)) return false;
+        if (!expirationDate.equals(that.expirationDate)) return false;
+        return token.equals(that.token);
     }
 
     @Override
     public int hashCode() {
         int result = id.hashCode();
-        result = 31 * result + studentId.hashCode();
+        result = 31 * result + user.hashCode();
         result = 31 * result + expirationDate.hashCode();
+        result = 31 * result + token.hashCode();
         return result;
     }
 }

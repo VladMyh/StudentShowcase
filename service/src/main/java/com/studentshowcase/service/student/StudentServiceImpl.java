@@ -18,8 +18,7 @@ public class StudentServiceImpl implements StudentService {
 	private MongoUserRepository repository;
 
 	@Autowired
-	public StudentServiceImpl(MongoUserRepository repository) {
-		LOGGER.info("Initializing StudentServiceImpl");
+	public void setRepository(MongoUserRepository repository) {
 		this.repository = repository;
 	}
 
@@ -32,15 +31,23 @@ public class StudentServiceImpl implements StudentService {
 
 	public void addOrUpdateStudent(User student) {
 		LOGGER.info("Saving student");
+		repository.save(student);
+	}
+
+	@Override
+	public User registerStudent(User student) {
+		LOGGER.info("Registering new student");
 
 		List<User> students = repository.findByEmail(student.getEmail());
 
 		if(students.isEmpty()) {
-			repository.save(student);
+			return repository.save(student);
 		}
 		else {
 			LOGGER.info("Error email " + student.getEmail() + " already in use");
+
 		}
+		return null;
 	}
 
 	public long studentCount() {

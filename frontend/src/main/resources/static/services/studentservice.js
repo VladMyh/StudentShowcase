@@ -17,7 +17,7 @@ function StudentService($http, User) {
     service.Create = function (data) {
         return $http({
             method: 'POST',
-            url: '/api/students',
+            url: '/api/students/register',
             headers: {authorization: User.token},
             data: data
         });

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 public interface StudentService {
 	User getStudentById(String id);
 	void addOrUpdateStudent(User student);
+	User registerStudent(User student);
 	long studentCount();
 	Page<User> getPage(Integer page, Integer size);
 	void addTrackToStudent(String studentId, String trackId);
