@@ -75,6 +75,13 @@ function config($locationProvider, $routeProvider, $httpProvider, USER_ROLES) {
                                   USER_ROLES.employer]
             }
         })
+        .when('/confirmRegistration/:token', {
+            templateUrl: 'register/confirmation/registerconf.html',
+            controller: 'RegistrationConformationController',
+            data : {
+                authorizedRoles: []
+            }
+        })
 
         .otherwise({redirectTo: '/main'});
 

@@ -9,8 +9,7 @@ function FacultyService($http, User) {
     service.getAll = function() {
         return $http({
             method: 'GET',
-            url: '/api/faculties',
-            headers: {authorization: User.token}
+            url: '/api/faculties'
         });
     };
 
