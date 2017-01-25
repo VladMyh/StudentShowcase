@@ -40,10 +40,10 @@ public class CustomUserDetailsService implements UserDetailsService{
 
 		return new org.springframework.security.core.userdetails.User(user.getEmail(),
 																		user.getPassword(),
-																		true,//user.getIsActivated(), TODO: implement user activation
+																		user.getIsEmailVerified(),//user.getIsActivated(), TODO: implement user activation
 																		true,
 																		true,
-																		true,
+																		user.getIsActivated(),
 																		getAuthorityes(user));
 	}
 
